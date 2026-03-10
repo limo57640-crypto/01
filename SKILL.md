@@ -1,43 +1,46 @@
 ---
-name: gemini
-description: Gemini CLI for one-shot Q&A, summaries, and generation.
-homepage: https://ai.google.dev/
+name: video-frames
+description: Extract frames or short clips from videos using ffmpeg.
+homepage: https://ffmpeg.org
 metadata:
   {
     "openclaw":
       {
-        "emoji": "♊️",
-        "requires": { "bins": ["gemini"] },
+        "emoji": "🎞️",
+        "requires": { "bins": ["ffmpeg"] },
         "install":
           [
             {
               "id": "brew",
               "kind": "brew",
-              "formula": "gemini-cli",
-              "bins": ["gemini"],
-              "label": "Install Gemini CLI (brew)",
+              "formula": "ffmpeg",
+              "bins": ["ffmpeg"],
+              "label": "Install ffmpeg (brew)",
             },
           ],
       },
   }
 ---
 
-# Gemini CLI
+# Video Frames (ffmpeg)
 
-Use Gemini in one-shot mode with a positional prompt (avoid interactive mode).
+Extract a single frame from a video, or create quick thumbnails for inspection.
 
-Quick start
+## Quick start
 
-- `gemini "Answer this question..."`
-- `gemini --model <name> "Prompt..."`
-- `gemini --output-format json "Return JSON"`
+First frame:
 
-Extensions
+```bash
+{baseDir}/scripts/frame.sh /path/to/video.mp4 --out /tmp/frame.jpg
+```
 
-- List: `gemini --list-extensions`
-- Manage: `gemini extensions <command>`
+At a timestamp:
 
-Notes
+```bash
+{baseDir}/scripts/frame.sh /path/to/video.mp4 --time 00:00:10 --out /tmp/frame-10s.jpg
+```
 
-- If auth is required, run `gemini` once interactively and follow the login flow.
-- Avoid `--yolo` for safety.
+## Notes
+
+- Prefer `--time` for “what is happening around here?”.
+- Use a `.jpg` for quick share; use `.png` for crisp UI frames.
